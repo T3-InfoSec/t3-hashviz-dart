@@ -3,14 +3,14 @@ import 'package:test/test.dart';
 
 void main() {
   group('Hashviz', () {
-    final awesome = Hashviz();
+    final hashviz = Hashviz();
 
     setUp(() {
-      // Additional setup goes here.
+
     });
 
     test('First Test', () {
-      expect(awesome.generatePattern("hash"), isTrue);
+      expect(hashviz.generatePattern("hash"), isTrue);
     });
   });
 }

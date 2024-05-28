@@ -1,24 +1,13 @@
 # t3-hashviz-dart
 
-A Dart package for generating unique symmetric patterns (identicons) based on provided hash strings.
-
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+A Dart package for generating hash visualization (commonly referred to as Identicons) based on provided hash strings.
 
 It is one of the Greatwall TKBA protocol implementations. It returns different types of identicons for given hashes
 
 ## Features
 
-- Generate unique symmetric patterns (identicons) based on hash strings.
-- Generate images from hash
+- Generate hash visualization (commonly referred to as Identicons) based on hash.
+- Generate images from hash.
 - Customize the size, background color, foreground color and grid size of the patterns or images.
   
 
@@ -42,7 +31,7 @@ dart test
 ```
 ## Usage
 
-Example code on how to use Hashviz to generate unique symmetric pattern
+Example code on how to use Hashviz to generate hash visualization (commonly referred to as Identicons) pattern.
 ```dart
 import 'package:hashviz/hashviz.dart';
 

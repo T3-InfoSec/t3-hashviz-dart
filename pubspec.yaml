@@ -1,5 +1,5 @@
 name: hashviz
-description: One of the Greatwall TKBA protocol implementations. It returns different types of identicons for given hashes.
+description: One of the Greatwall TKBA protocol implementations. It returns different types of hash visualization (commonly referred to as Identicons) for given hashes.
 version: 1.0.0
 homepage: http://t3infosecurity.com/
 
