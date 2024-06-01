@@ -1,14 +1,12 @@
 # t3-hashviz-dart
 
-A Dart package for generating hash visualization (commonly referred to as Identicons) based on provided hash strings.
-
-It is one of the Greatwall TKBA protocol implementations. It returns different types of identicons for given hashes
+A Dart package for generating hash visualization (commonly referred to as Identicons) based on provided hash. It is one of the Greatwall TKBA protocol implementations. It returns different types of visualization for given hashes.
+This visualization generation relies on [Blockies](https://pub.dev/packages/blockies)
 
 ## Features
 
 - Generate hash visualization (commonly referred to as Identicons) based on hash.
-- Generate images from hash.
-- Customize the size, background color, foreground color and grid size of the patterns or images.
+- Customize the size, color, background color, and spotColor.
   
 
 ## Getting started
@@ -21,14 +19,22 @@ dependencies:
 Then, run `dart pub get` to install the package.
 
 ### Running tests
-To run the tests for Hashviz, use the following command in the root directory:
+#### Unit test
+Unit tests have to be executed using the flutter framework since Blockies extends a flutter component. Therefore the command 'flutter test' is used.
+To run the tests for Hashviz, use the following commands in the root directory:
 ```bash
-dart test test/hashviz_test.dart
+cd flutter_integration_test
+code .
+flutter test
 ```
-or simply:
+#### Integration test
+In order to visualize the behavior of the module, an integration with flutter has been developed. To run these integration tests, the following commands must be executed:
 ```bash
-dart test
+cd flutter_integration_test
+code .
+flutter run
 ```
+
 ## Usage
 
 Example code on how to use Hashviz to generate hash visualization (commonly referred to as Identicons) pattern.
@@ -39,9 +45,9 @@ void main() {
   // Create a Hashviz instance
   Hashviz hashviz = Hashviz();
 
-  // Generate an unique symmetric pattern based on a hash string
+  // Generate pattern based on a hash string
   String hash = 'your_hash_string';
-  img.Image pattern = hashviz.generatePattern(hash);
+  Blockies pattern = hashviz.generatePattern(hash);
 }
 ```
 

@@ -6,10 +6,12 @@ homepage: http://t3infosecurity.com/
 environment:
   sdk: ^3.4.0
 
-# Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
+  flutter:
+    sdk: flutter
+  blockies: ^0.1.2
 
 dev_dependencies:
   lints: ^3.0.0
-  test: ^1.24.0
+  flutter_test:
+    sdk: flutter
