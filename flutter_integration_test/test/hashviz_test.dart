@@ -26,6 +26,33 @@ void main() {
       expect(hashviz.spotColor, 0xFF00FFFF);
     });
 
+    test('Constructor with invalid size', () {
+      expect(
+        () => Hashviz(size: -1),
+        throwsA(predicate((e) => e is AssertionError && e.message == 'Size must be a positive integer.')),
+      );
+    });
+
+    test('Constructor with invalid backgroundColor', () {
+      expect(
+        () => Hashviz(size: 8, backgroundColor: 0x1FFFFFFFF),
+        throwsA(predicate((e) => e is AssertionError && e.message == 'if present, background color must be between 0x00000000 and 0xFFFFFFFF.')),
+      );
+    });
+
+    test('Constructor with invalid color', () {
+      expect(
+        () => Hashviz(size: 8, color: 0x1FFFFFFFF),
+        throwsA(predicate((e) => e is AssertionError && e.message == 'if present, color must be between 0x00000000 and 0xFFFFFFFF.')),
+      );
+    });
+
+    test('Constructor with invalid spotColor', () {
+      expect(
+        () => Hashviz(size: 8, spotColor: 0x1FFFFFFFF),
+        throwsA(predicate((e) => e is AssertionError && e.message == 'if present, spot color must be between 0x00000000 and 0xFFFFFFFF.')),
+      );
+    });
 
     test('generatePattern method from hashviz with required attributes', () {
       final hashviz = Hashviz(size: 8);
