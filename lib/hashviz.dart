@@ -15,6 +15,11 @@ class Hashviz {
   ///   - backgroundColor: An integer representing the background color in hexadecimal (0x00000000 to 0xFFFFFFFF).
   ///   - color: An integer representing the main color in hexadecimal (0x00000000 to 0xFFFFFFFF).
   ///   - spotColor: An integer representing the spot color in hexadecimal (0x00000000 to 0xFFFFFFFF).
+  ///   These color values are in ARGB format, where:
+  ///     - The first two characters represent the opacity (Alpha). 0x00000000 is transparent, not black
+  ///     - The next two characters represent the red value (R).
+  ///     - The following two characters represent the green value (G).
+  ///     - The last two characters represent the blue value (B).
   ///
   /// - Throws:
   ///   - ArgumentError if any of the color values are outside the range 0x00000000 to 0xFFFFFFFF.

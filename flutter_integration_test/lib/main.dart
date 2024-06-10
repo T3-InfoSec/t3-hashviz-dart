@@ -21,12 +21,21 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String hash = 'my awesome #42 hash';
+    String hash = 'my awesome hash #42';
     Hashviz hashviz = Hashviz(
-      //backgroundColor: 0xFFFFFFFF,
-      //color: 0x00000000,
+      // 0xFFFFFFFF White
+      // 0x00000000 Transparent
+      // 0xFF000000 Black
+      // 0xFF00FF00 Green
+      // 0xFF0000FF Blue
+      // 0xFFFF0000 Red
+      // 0xFFFFFF00 Yellow
+      // 0xFFFFC0CB Pink
+      
+      backgroundColor: 0x5FFFFF00, // Yellow
+      color: 0xFFFF20FF, // Bright Neon pink
       spotColor: 0xFF00FFFF, // Bright Neon blue
-      size: 12,
+      size: 16,
     );
 
     return Scaffold(
