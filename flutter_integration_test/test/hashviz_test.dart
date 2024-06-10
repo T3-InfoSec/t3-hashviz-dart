@@ -1,7 +1,9 @@
 import 'package:hashviz/hashviz.dart';
+
 import 'package:flutter_test/flutter_test.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
+
+import 'dart:ui';
 
 void main() {
   group('Hashviz tests', () {
@@ -26,31 +28,31 @@ void main() {
       expect(hashviz.spotColor, 0xFF00FFFF);
     });
 
-    test('Constructor with invalid size', () {
+    test('Constructor throws ArgumentError when invalid size', () {
       expect(
-        () => Hashviz(size: -1),
-        throwsA(predicate((e) => e is AssertionError && e.message == 'Size must be a positive integer.')),
+        () => Hashviz(size: -5),
+        throwsArgumentError,
       );
     });
 
-    test('Constructor with invalid backgroundColor', () {
+    test('Constructor throws ArgumentError when invalid background color', () {
       expect(
-        () => Hashviz(size: 8, backgroundColor: 0x1FFFFFFFF),
-        throwsA(predicate((e) => e is AssertionError && e.message == 'if present, background color must be between 0x00000000 and 0xFFFFFFFF.')),
+        () => Hashviz(size: 8, backgroundColor: 0x100000000),
+        throwsArgumentError,
       );
     });
 
-    test('Constructor with invalid color', () {
+    test('Constructor throws ArgumentError when invalid color', () {
       expect(
-        () => Hashviz(size: 8, color: 0x1FFFFFFFF),
-        throwsA(predicate((e) => e is AssertionError && e.message == 'if present, color must be between 0x00000000 and 0xFFFFFFFF.')),
+        () => Hashviz(size: 8, color: 0x100000000),
+        throwsArgumentError,
       );
     });
 
-    test('Constructor with invalid spotColor', () {
+    test('Constructor throws ArgumentError when invalid spot color', () {
       expect(
-        () => Hashviz(size: 8, spotColor: 0x1FFFFFFFF),
-        throwsA(predicate((e) => e is AssertionError && e.message == 'if present, spot color must be between 0x00000000 and 0xFFFFFFFF.')),
+        () => Hashviz(size: 8, spotColor: 0x100000000),
+        throwsArgumentError,
       );
     });
 
@@ -83,24 +85,39 @@ void main() {
       expect(blockies.spotColor, Color(0xFF00FFFF));
     });
 
-    test('Getters and setters', () {
-      final hashviz = Hashviz(size: 8);
-
-      // Test size
-      hashviz.size = 10;
+    test('Getter and setters when no errors', () {
+      final hashviz = Hashviz(size: 10);
+      hashviz.backgroundColor = 0xFF000000;
+      hashviz.color = 0xFFFFFFFF;
+      hashviz.spotColor = 0xFF00FFFF;
       expect(hashviz.size, 10);
+      expect(hashviz.backgroundColor, 0xFF000000);
+      expect(hashviz.color, 0xFFFFFFFF);
+      expect(hashviz.spotColor, 0xFF00FFFF);
+    });
 
-      // Test backgroundColor
-      hashviz.backgroundColor = 0xFF00FF00;
-      expect(hashviz.backgroundColor, 0xFF00FF00);
+    test('Setter for backgroundColor throws ArgumentError when invalid color', () {
+      final hashviz = Hashviz(size: 8);
+      expect(
+        () => hashviz.backgroundColor = 0x100000000, // Invalid color
+        throwsArgumentError,
+      );
+    });
 
-      // Test color
-      hashviz.color = 0xFFFF0000;
-      expect(hashviz.color, 0xFFFF0000);
+    test('Setter for color throws ArgumentError when invalid color', () {
+      final hashviz = Hashviz(size: 8);
+      expect(
+        () => hashviz.color = 0x100000000, // Invalid color
+        throwsArgumentError,
+      );
+    });
 
-      // Test spotColor
-      hashviz.spotColor = 0xFFFFFF00;
-      expect(hashviz.spotColor, 0xFFFFFF00);
+    test('Setter for spot color throws ArgumentError when invalid color', () {
+      final hashviz = Hashviz(size: 8);
+      expect(
+        () => hashviz.spotColor = 0x100000000, // Invalid color
+        throwsArgumentError,
+      );
     });
   });
 }
