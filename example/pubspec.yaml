@@ -1,4 +1,4 @@
-name: flutter_integration_test
+name: example
 description: "Project to test hashviz integration with Flutter"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

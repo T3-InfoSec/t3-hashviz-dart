@@ -16,21 +16,18 @@ To start using Hashviz, add it to your `pubspec.yaml`:
 dependencies:
     hashviz: ^1.0.0
 ```
-Then, run `dart pub get` to install the package.
+Then, run `flutter pub get` to install the package.
 
 ### Running tests
 #### Unit test
 Unit tests have to be executed using the flutter framework since Blockies extends a flutter component. Therefore the command 'flutter test' is used.
-To run the tests for Hashviz, use the following commands in the root directory:
 ```bash
-cd flutter_integration_test
-code .
 flutter test
 ```
-#### Integration test
-In order to visualize the behavior of the module, an integration with flutter has been developed. To run these integration tests, the following commands must be executed:
+#### Example
+In order to visualize the behavior of the module, an example with flutter has been developed. To run these test, the following commands must be executed:
 ```bash
-cd flutter_integration_test
+cd example
 code .
 flutter run
 ```
