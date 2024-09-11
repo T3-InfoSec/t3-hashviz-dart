@@ -65,19 +65,14 @@ class Hashviz {
     final width = size; // Only support square icons for now
     final height = size;
 
-    final dataWidth = (width / 2).ceil();
-    final mirrorWidth = width - dataWidth;
-
     var data = <int>[];
     for (var y = 0; y < height; y++) {
       var row = <int>[];
-      for (var x = 0; x < dataWidth; x++) {
+      for (var x = 0; x < width; x++) {
         // this makes foreground and background color to have a 43% (1/2.3) probability
         // spot color has 13% chance
         row.add((rand() * 2.3).floor());
       }
-      final r = row.sublist(0, mirrorWidth).toList();
-      row.addAll(r.reversed.toList());
 
       for (var i = 0; i < row.length; i++) {
         data.add(row[i]);
