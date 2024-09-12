@@ -3,6 +3,7 @@ import 'package:fixnum/fixnum.dart';
 class Hashviz {
   final int _size;
   final bool _isSymmetric;
+  final int _numColors;
   List<int> _randSeed = [];
 
   /// Constructor for the [Hashviz] class.
@@ -10,16 +11,21 @@ class Hashviz {
   /// - Parameters:
   ///   - [size]: The size of the blocks in the visualization. Must be a positive integer.
   ///   - [isSymmetric]: A boolean indicating if the visualization should be symmetric.
+  ///   - [numColors]: An int indicating if the number of colours to be represented.
   ///
   /// - Throws:
   ///   - [ArgumentError] if the size is not a positive integer.
   Hashviz({
     required int size,
     required bool isSymmetric,
+    required int numColors,
   })  : _size = _isPositive(size)
             ? size
-            : throw ArgumentError("Size must be a positive integer."),
-        _isSymmetric = isSymmetric;
+            : throw ArgumentError("size must be a positive integer."),
+        _isSymmetric = isSymmetric,
+        _numColors = _isPositive(numColors)
+            ? numColors
+            : throw ArgumentError("numColors must be a positive integer.");
 
   /// Method to generate image data from a hash string
   ///
@@ -31,7 +37,7 @@ class Hashviz {
   List<int> generatePatternData(String hash) {
     _randSeed = createRandSeed(hash);
 
-    return createImageData(_size, _isSymmetric);
+    return createImageData(_size, _isSymmetric, _numColors);
   }
 
   /// Method to create a random seed from the hash
@@ -65,9 +71,11 @@ class Hashviz {
   ///
   /// The array generated represents the blocky pattern to be drawn.
   /// A value of 1 or 2 means a block should be drawn, while 0 indicates the background.
-  List<int> createImageData(int size, bool isSymmetric) {
+  List<int> createImageData(int size, bool isSymmetric, int numColors) {
     final width = size; // Only support square icons for now
     final height = size;
+
+    final effectiveNumColors = numColors.clamp(2, 9);
 
     var data = <int>[];
     for (var y = 0; y < height; y++) {
@@ -76,9 +84,10 @@ class Hashviz {
       final halfWidth = isSymmetric ? (width / 2).ceil() : width;
 
       for (var x = 0; x < halfWidth; x++) {
-        // this makes foreground and background color to have a 43% (1/2.3) probability
-        // spot color has 13% chance
-        row.add((rand() * 2.3).floor());
+        // numColors controls the possible values.
+        // `rand()` generates a decimal value, we multiply it by `effectiveNumColors - 1` so that it is in the range [0, effectiveNumColors - 1].
+        // The value 0 will correspond to the background.
+        row.add((rand() * (effectiveNumColors - 1)).floor());
       }
 
       if (isSymmetric) {
