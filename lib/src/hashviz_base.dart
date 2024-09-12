@@ -85,9 +85,10 @@ class Hashviz {
 
       for (var x = 0; x < halfWidth; x++) {
         // numColors controls the possible values.
-        // `rand()` generates a decimal value, we multiply it by `effectiveNumColors - 1` so that it is in the range [0, effectiveNumColors - 1].
+        // `rand()` generates a decimal value, we multiply it by `effectiveNumColors`.
+        // `floor()` round down to the nearest integer. This ensures that the final value is in the range 0 to numColors - 1.
         // The value 0 will correspond to the background.
-        row.add((rand() * (effectiveNumColors - 1)).floor());
+        row.add((rand() * (effectiveNumColors)).floor());
       }
 
       if (isSymmetric) {
