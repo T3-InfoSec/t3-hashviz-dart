@@ -5,13 +5,13 @@ import 'package:hashviz/hashviz.dart';
 void main() {
   group('Hashviz Tests', () {
     test('Constructor should throw ArgumentError for non-positive size', () {
-      expect(() => Hashviz(size: 0), throwsArgumentError);
-      expect(() => Hashviz(size: -1), throwsArgumentError);
-      expect(() => Hashviz(size: 1), returnsNormally);
+      expect(() => Hashviz(size: 0, isSymmetric: true), throwsArgumentError);
+      expect(() => Hashviz(size: -1, isSymmetric: true), throwsArgumentError);
+      expect(() => Hashviz(size: 1, isSymmetric: true), returnsNormally);
     });
 
     test('Generate pattern data should produce non-empty list', () {
-      final hashviz = Hashviz(size: 16);
+      final hashviz = Hashviz(size: 16, isSymmetric: true);
       final hash = 'test_hash';
       final imageData = hashviz.generatePatternData(hash);
 
@@ -19,8 +19,8 @@ void main() {
       expect(imageData, hasLength(16 * 16)); // For size 16, expect 256 values
     });
 
-    test('Pattern data should not be symmetrical', () {
-      final hashviz = Hashviz(size: 16);
+    test('When isSymetrical false then pattern data should not be symmetrical', () {
+      final hashviz = Hashviz(size: 16, isSymmetric: false);
       final hash = 'test_hash';
       final imageData = hashviz.generatePatternData(hash);
 
@@ -41,7 +41,7 @@ void main() {
     });
 
     test('CreateRandSeed should generate consistent seed', () {
-      final hashviz = Hashviz(size: 16);
+      final hashviz = Hashviz(size: 16, isSymmetric: true);
       final hash1 = 'seed1';
       final hash2 = 'seed2';
 

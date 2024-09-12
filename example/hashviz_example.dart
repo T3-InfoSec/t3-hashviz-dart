@@ -2,7 +2,7 @@ import 'package:hashviz/hashviz.dart';
 
 void main() {
   // Create an instance of Hashviz
-  final hashviz = Hashviz(size: 16);
+  final hashviz = Hashviz(size: 16, isSymmetric: false);
 
   // Define a test hash
   final hash = 'example_hash_string';

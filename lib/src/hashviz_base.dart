@@ -2,20 +2,24 @@ import 'package:fixnum/fixnum.dart';
 
 class Hashviz {
   final int _size;
+  final bool _isSymmetric;
   List<int> _randSeed = [];
 
   /// Constructor for the [Hashviz] class.
   ///
   /// - Parameters:
   ///   - [size]: The size of the blocks in the visualization. Must be a positive integer.
+  ///   - [isSymmetric]: A boolean indicating if the visualization should be symmetric.
   ///
   /// - Throws:
   ///   - [ArgumentError] if the size is not a positive integer.
   Hashviz({
     required int size,
+    required bool isSymmetric,
   })  : _size = _isPositive(size)
             ? size
-            : throw ArgumentError("Size must be a positive integer.");
+            : throw ArgumentError("Size must be a positive integer."),
+        _isSymmetric = isSymmetric;
 
   /// Method to generate image data from a hash string
   ///
@@ -27,7 +31,7 @@ class Hashviz {
   List<int> generatePatternData(String hash) {
     _randSeed = createRandSeed(hash);
 
-    return createImageData(_size);
+    return createImageData(_size, _isSymmetric);
   }
 
   /// Method to create a random seed from the hash
@@ -61,22 +65,28 @@ class Hashviz {
   ///
   /// The array generated represents the blocky pattern to be drawn.
   /// A value of 1 or 2 means a block should be drawn, while 0 indicates the background.
-  List<int> createImageData(int size) {
+  List<int> createImageData(int size, bool isSymmetric) {
     final width = size; // Only support square icons for now
     final height = size;
 
     var data = <int>[];
     for (var y = 0; y < height; y++) {
       var row = <int>[];
-      for (var x = 0; x < width; x++) {
+
+      final halfWidth = isSymmetric ? (width / 2).ceil() : width;
+
+      for (var x = 0; x < halfWidth; x++) {
         // this makes foreground and background color to have a 43% (1/2.3) probability
         // spot color has 13% chance
         row.add((rand() * 2.3).floor());
       }
 
-      for (var i = 0; i < row.length; i++) {
-        data.add(row[i]);
+      if (isSymmetric) {
+        final reflected = List<int>.from(row.reversed);
+        row.addAll(reflected);
       }
+
+      data.addAll(row);
     }
 
     return data;
