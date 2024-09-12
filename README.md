@@ -38,7 +38,7 @@ void main() {
   Hashviz hashviz = Hashviz(
     size: 16,
     isSymmetric: false,
-    numColors: 3); // Initialize with the desired size, symmetric and number of colours.
+    numColors: 3); // Initialize with the desired size, symmetric and number of colors.
 
   // Generate pattern data based on a hash string
   String hash = 'your_hash_string';

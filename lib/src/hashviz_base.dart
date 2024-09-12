@@ -11,7 +11,7 @@ class Hashviz {
   /// - Parameters:
   ///   - [size]: The size of the blocks in the visualization. Must be a positive integer.
   ///   - [isSymmetric]: A boolean indicating if the visualization should be symmetric.
-  ///   - [numColors]: An int indicating if the number of colours to be represented.
+  ///   - [numColors]: An int indicating if the number of colors to be represented.
   ///
   /// - Throws:
   ///   - [ArgumentError] if the size is not a positive integer.
