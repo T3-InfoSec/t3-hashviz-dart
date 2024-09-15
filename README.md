@@ -12,19 +12,18 @@ dependencies:
   hashviz: ^1.0.0
 ```
 
-Then, run `flutter pub get` to install the package.
+Then, run `dart pub get` to install the package.
 
 ## Running tests
-Unit tests can be executed using the Dart framework. Run the following command:
+Unit tests can be executed using the Dart. Run the following command:
 ```bash
 dart test
 ```
 ## Example
-To visualize the behavior of the module, an example with Flutter has been developed. To run these tests, execute the following commands:
+To visualize the behavior of the module, an example has been developed. To run it, execute the following commands:
 ```bash
 cd example
-code .
-flutter run
+dart hashviz_example.dart
 ```
 
 ## Usage
