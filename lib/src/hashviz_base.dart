@@ -24,7 +24,7 @@ class Hashviz {
             : throw ArgumentError("size must be a positive integer."),
         _isSymmetric = isSymmetric,
         _numColors = _isPositive(numColors)
-            ? numColors
+            ? _clampedNumColors(size, numColors)
             : throw ArgumentError("numColors must be a positive integer.");
 
   /// Method to generate image data from a hash string
@@ -104,5 +104,11 @@ class Hashviz {
 
   static bool _isPositive(int value) {
     return value > 0;
+  }
+
+  /// Limits the number of colors based on the size of the blocks
+  static int _clampedNumColors(int size, int numColors) {
+    final maxColors = size * size;
+    return numColors > maxColors ? maxColors : numColors;
   }
 }
