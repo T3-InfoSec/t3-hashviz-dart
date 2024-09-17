@@ -9,7 +9,6 @@ environment:
 dependencies:
   hashlib: ^1.16.0
   fixnum: ^1.1.0
-  image: ^4.2.0
 
 dev_dependencies:
   lints: ^4.0.0
