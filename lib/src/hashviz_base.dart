@@ -29,34 +29,6 @@ class Hashviz {
     return _createImageBlocks(size);
   }
 
-  /// Method to create a random seed from the hash
-  ///
-  /// The seed is used to generate consistent patterns based on the hash input.
-  List<int> _createRandomSeed(String seed) {
-    var randomSeed = List<int>.filled(4, 0);
-
-    for (int i = 0; i < seed.length; i++) {
-      randomSeed[i % 4] =
-          (randomSeed[i % 4] << 5) - randomSeed[i % 4] + seed.codeUnitAt(i);
-    }
-
-    return randomSeed;
-  }
-
-  /// Generates a random value based on the seed
-  double _randomFromSeed() {
-    // based on Java's String.hashCode(), expanded to 4 32bit values
-    final t = Int32(_randSeed[0] ^ Int32(_randSeed[0] << 11).toInt());
-    final third = Int32(_randSeed[3]);
-
-    _randSeed[0] = _randSeed[1];
-    _randSeed[1] = _randSeed[2];
-    _randSeed[2] = _randSeed[3];
-    _randSeed[3] = ((third ^ (third >> 19)) ^ t ^ (t >> 8)).toInt();
-
-    return (Int32(_randSeed[3] >>> 0)).toInt() / ((1 << 31) >>> 0);
-  }
-
   /// Creates image data.
   ///
   /// The array generated represents the pattern to be drawn. A value of 1 or
@@ -87,5 +59,33 @@ class Hashviz {
     }
 
     return blocks;
+  }
+
+  /// Method to create a random seed from the hash
+  ///
+  /// The seed is used to generate consistent patterns based on the hash input.
+  List<int> _createRandomSeed(String seed) {
+    var randomSeed = List<int>.filled(4, 0);
+
+    for (int i = 0; i < seed.length; i++) {
+      randomSeed[i % 4] =
+          (randomSeed[i % 4] << 5) - randomSeed[i % 4] + seed.codeUnitAt(i);
+    }
+
+    return randomSeed;
+  }
+
+  /// Generates a random value based on the seed
+  double _randomFromSeed() {
+    // based on Java's String.hashCode(), expanded to 4 32bit values
+    final t = Int32(_randSeed[0] ^ Int32(_randSeed[0] << 11).toInt());
+    final third = Int32(_randSeed[3]);
+
+    _randSeed[0] = _randSeed[1];
+    _randSeed[1] = _randSeed[2];
+    _randSeed[2] = _randSeed[3];
+    _randSeed[3] = ((third ^ (third >> 19)) ^ t ^ (t >> 8)).toInt();
+
+    return (Int32(_randSeed[3] >>> 0)).toInt() / ((1 << 31) >>> 0);
   }
 }
