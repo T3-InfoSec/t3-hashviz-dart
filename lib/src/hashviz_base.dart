@@ -1,5 +1,7 @@
 import 'package:fixnum/fixnum.dart';
 
+import 'utils.dart';
+
 /// A Hash visualization class from a provided hash as blocks of pixels.
 class Hashviz {
   String hash;
@@ -16,7 +18,7 @@ class Hashviz {
     required String hash,
     int size = 10,
   })  : hash = hash,
-        size = size.abs();
+        size = isValidSize(size) ? size : 1;
 
   /// A 2D-array of image blocks (data).
   ///
@@ -34,7 +36,7 @@ class Hashviz {
   /// The array generated represents the pattern to be drawn. A value of 1 or
   /// 2 means a block should be drawn, while 0 indicates the background.
   ///
-  /// For now only a square images are supported.
+  /// For now, only a square images are supported.
   List<int> _createImageBlocks(int size) {
     final width = size;
     final height = size;
@@ -48,7 +50,7 @@ class Hashviz {
       for (var x = 0; x < dataWidth; x++) {
         // this makes foreground and background color to have a 43% (1/2.3)
         // probability spot color has 13% chance
-        row.add((_randomFromSeed() * 2.3).floor());
+        row.add((_generateRandomFloatFromSeed() * 2.3).floor());
       }
       final r = row.sublist(0, mirrorWidth).toList();
       row.addAll(r.reversed.toList());
@@ -61,7 +63,7 @@ class Hashviz {
     return blocks;
   }
 
-  /// Method to create a random seed from the hash
+  /// Create random seed from the hash
   ///
   /// The seed is used to generate consistent patterns based on the hash input.
   List<int> _createRandomSeed(String seed) {
@@ -76,7 +78,7 @@ class Hashviz {
   }
 
   /// Generates a random value based on the seed
-  double _randomFromSeed() {
+  double _generateRandomFloatFromSeed() {
     // based on Java's String.hashCode(), expanded to 4 32bit values
     final t = Int32(_randSeed[0] ^ Int32(_randSeed[0] << 11).toInt());
     final third = Int32(_randSeed[3]);
