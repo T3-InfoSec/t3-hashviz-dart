@@ -1,5 +1,5 @@
 # t3-hashviz-dart
-A Dart package for generating hash visualizations (commonly referred to as Identicons) based on a provided hash. It is one of the Greatwall TKBA protocol implementations. This package generates the data for the visualization and delegates the final rendering with colors to the client.
+A Dart package for generating hash visualizations (commonly referred to as Identicons) based on a provided hash. This package generates the data for the visualization and delegates the final rendering with colors to the client.
 
 ## Features
 - Generate hash visualizations (commonly referred to as Identicons) based on a hash.
@@ -9,7 +9,7 @@ A Dart package for generating hash visualizations (commonly referred to as Ident
 To start using Hashviz, add it to your `pubspec.yaml`:
 ```yaml
 dependencies:
-  hashviz: ^1.0.0
+  hashviz: ^0.1.0-dev
 ```
 
 Then, run `dart pub get` to install the package.
