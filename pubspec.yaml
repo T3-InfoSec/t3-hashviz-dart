@@ -1,15 +1,15 @@
 name: hashviz
-description: One of the Greatwall TKBA protocol implementations. It returns different types of hash visualization (commonly referred to as Identicons) for given hashes.
-version: 1.0.0
+description: A library for generating a visualization blocks (commonly known as Identicons).
+version: 0.1.0-dev
 homepage: http://t3infosecurity.com/
 
 environment:
   sdk: ^3.4.0
 
-# Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
+  hashlib: ^1.16.0
+  fixnum: ^1.1.0
 
 dev_dependencies:
-  lints: ^3.0.0
+  lints: ^4.0.0
   test: ^1.24.0

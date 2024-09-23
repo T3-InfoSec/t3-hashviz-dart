@@ -1,52 +1,48 @@
 # t3-hashviz-dart
-
-A Dart package for generating hash visualization (commonly referred to as Identicons) based on provided hash strings.
-
-It is one of the Greatwall TKBA protocol implementations. It returns different types of identicons for given hashes
+A Dart package for generating hash visualizations (commonly referred to as Identicons) based on a provided hash. This package generates the data for the visualization and delegates the final rendering with colors to the client.
 
 ## Features
-
-- Generate hash visualization (commonly referred to as Identicons) based on hash.
-- Generate images from hash.
-- Customize the size, background color, foreground color and grid size of the patterns or images.
-  
+- Generate hash visualizations (commonly referred to as Identicons) based on a hash.
+- Customize the size of the blocks in the visualization.
 
 ## Getting started
-
 To start using Hashviz, add it to your `pubspec.yaml`:
 ```yaml
 dependencies:
-    hashviz: ^1.0.0
+  hashviz: ^0.1.0-dev
 ```
+
 Then, run `dart pub get` to install the package.
 
-### Running tests
-To run the tests for Hashviz, use the following command in the root directory:
-```bash
-dart test test/hashviz_test.dart
-```
-or simply:
+## Running tests
+Unit tests can be executed using the Dart. Run the following command:
 ```bash
 dart test
 ```
-## Usage
+## Example
+To visualize the behavior of the module, an example has been developed. To run it, execute the following commands:
+```bash
+cd example
+dart hashviz_example.dart
+```
 
-Example code on how to use Hashviz to generate hash visualization (commonly referred to as Identicons) pattern.
+## Usage
+Example code on how to use Hashviz to generate hash visualizations (commonly referred to as Identicons) pattern:
+
 ```dart
 import 'package:hashviz/hashviz.dart';
 
 void main() {
   // Create a Hashviz instance
-  Hashviz hashviz = Hashviz();
+  Hashviz hashviz = Hashviz(size: 8); // Initialize with the desired size
 
-  // Generate an unique symmetric pattern based on a hash string
+  // Generate pattern data based on a hash string
   String hash = 'your_hash_string';
-  img.Image pattern = hashviz.generatePattern(hash);
+  List<int> patternData = hashviz.generatePatternData(hash);
+
+  // Render the pattern data with colors in your Flutter app
 }
 ```
 
 ## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+TODO: Tell users more about the package: where to find more information, how to contribute to the package, how to file issues, what response they can expect from the package authors, and more.

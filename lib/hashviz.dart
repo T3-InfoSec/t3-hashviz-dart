@@ -1,6 +1,8 @@
+// TODO: Complete the copyright.
+// Copyright (c) 2024, ...
 
-class Hashviz {
-  // simple mock to be developed further
-  bool generatePattern(String hash) {
-    return true;
-  }}
+/// A library for generating a visualization blocks from a hash (commonly known as Identicons).
+library;
+
+export 'src/hashviz_base.dart';
+// TODO: Export any libraries intended for clients of this package.
