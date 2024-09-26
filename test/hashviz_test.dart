@@ -1,4 +1,4 @@
-import 'package:hashviz/hashviz.dart';
+import 'package:t3_hashviz/hashviz.dart';
 import 'package:test/test.dart';
 
 void main() {
