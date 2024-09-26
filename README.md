@@ -9,7 +9,7 @@ A Dart package for generating hash visualizations (commonly referred to as Ident
 To start using Hashviz, add it to your `pubspec.yaml`:
 ```yaml
 dependencies:
-  hashviz: ^0.1.0-dev
+  t3_hashviz: ^0.1.0-dev
 ```
 
 Then, run `dart pub get` to install the package.
