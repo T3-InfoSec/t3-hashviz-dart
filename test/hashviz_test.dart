@@ -4,17 +4,21 @@ import 'package:test/test.dart';
 void main() {
   group('Hashviz Tests', () {
     test('Constructor should throw ArgumentError for non-positive size', () {
-      Hashviz valid_hashviz_size = Hashviz(hash: 'test', size: 1);
-      Hashviz invalid_hashviz_size = Hashviz(hash: 'test', size: 0);
-      Hashviz invalid_hashviz_size_negative = Hashviz(hash: 'test', size: -1);
+      Hashviz valid_hashviz_size =
+          Hashviz(hashToVisualize: 'test', visualizationSize: 1);
+      Hashviz invalid_hashviz_size =
+          Hashviz(hashToVisualize: 'test', visualizationSize: 0);
+      Hashviz invalid_hashviz_size_negative =
+          Hashviz(hashToVisualize: 'test', visualizationSize: -1);
 
-      expect(valid_hashviz_size.size, 1);
-      expect(invalid_hashviz_size.size, 1);
-      expect(invalid_hashviz_size_negative.size, 1);
+      expect(valid_hashviz_size.visualizationSize, 1);
+      expect(invalid_hashviz_size.visualizationSize, 1);
+      expect(invalid_hashviz_size_negative.visualizationSize, 1);
     });
 
     test('Generate pattern data should produce non-empty list', () {
-      final hashviz = Hashviz(hash: 'test_hash', size: 16);
+      final hashviz =
+          Hashviz(hashToVisualize: 'test_hash', visualizationSize: 16);
       final imageData = hashviz.visualizationBlocks;
 
       expect(imageData, isNotEmpty);
