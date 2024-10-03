@@ -1,11 +1,9 @@
-import 'package:hashviz/hashviz.dart';
+import 'package:t3_hashviz/hashviz.dart';
 
 void main() {
   // Create an instance of Hashviz
-  final hashviz = Hashviz(
-    hash: "example_hash_string",
-    size: 16
-  );
+  final hashviz =
+      Hashviz(hashToVisualize: 'example_to_hash', visualizationSize: 16);
 
   // Generate the image data
   final imageData = hashviz.visualizationBlocks;
