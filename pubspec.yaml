@@ -1,5 +1,5 @@
-name: hashviz
-description: A library for generating a visualization blocks (commonly known as Identicons).
+name: t3_hashviz
+description: A library for generating a visualization blocks from a hash (commonly known as Identicons).
 version: 0.1.0-dev
 homepage: http://t3infosecurity.com/
 

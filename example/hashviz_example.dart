@@ -1,17 +1,16 @@
-import 'package:hashviz/hashviz.dart';
+import 'package:t3_hashviz/hashviz.dart';
 
 void main() {
   // Create an instance of Hashviz
-  final hashviz = Hashviz(
-    size: 16,
-    isSymmetric: false,
-    numColors: 3);
-
-  // Define a test hash
-  final hash = 'example_hash_string';
+  final hashviz =
+      Hashviz(
+        hashToVisualize: 'example_to_hash',
+        visualizationSize: 16,
+        isSymmetric: false,
+        numColors: 3);
 
   // Generate the image data
-  final imageData = hashviz.generatePatternData(hash);
+  final imageData = hashviz.visualizationBlocks;
 
   // Print the generated data
   print('Image Data:');

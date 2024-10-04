@@ -1,23 +1,24 @@
-import 'package:hashviz/hashviz.dart';
+import 'package:t3_hashviz/hashviz.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('Hashviz Tests', () {
     test('Constructor should throw ArgumentError for non-positive size', () {
       Hashviz valid_hashviz_size =
-          Hashviz(hash: 'test', size: 1, isSymmetric: true, numColors: 3);
+          Hashviz(hashToVisualize: 'test', visualizationSize: 1, isSymmetric: true, numColors: 3);
       Hashviz invalid_hashviz_size =
-          Hashviz(hash: 'test', size: 0, isSymmetric: true, numColors: 3);
+          Hashviz(hashToVisualize: 'test', visualizationSize: 0, isSymmetric: true, numColors: 3);
       Hashviz invalid_hashviz_size_negative =
-          Hashviz(hash: 'test', size: -1, isSymmetric: true, numColors: 3);
+          Hashviz(hashToVisualize: 'test', visualizationSize: -1, isSymmetric: true, numColors: 3);
 
-      expect(valid_hashviz_size.size, 1);
-      expect(invalid_hashviz_size.size, 1);
-      expect(invalid_hashviz_size_negative.size, 1);
+      expect(valid_hashviz_size.visualizationSize, 1);
+      expect(invalid_hashviz_size.visualizationSize, 1);
+      expect(invalid_hashviz_size_negative.visualizationSize, 1);
     });
 
     test('Generate pattern data should produce non-empty list', () {
-      final hashviz = Hashviz(hash: 'test_hash', size: 16);
+      final hashviz =
+          Hashviz(hashToVisualize: 'test_hash', visualizationSize: 16);
       final imageData = hashviz.visualizationBlocks;
 
       expect(imageData, isNotEmpty);
@@ -27,7 +28,7 @@ void main() {
     test('When isSymetrical false then pattern data should not be symmetrical',
         () {
       final hashviz = Hashviz(
-          hash: 'test_hash', size: 16, isSymmetric: false, numColors: 3);
+          hashToVisualize: 'test_hash', visualizationSize: 16, isSymmetric: false, numColors: 3);
       final imageData = hashviz.visualizationBlocks;
 
       bool isSymmetrical = true;
