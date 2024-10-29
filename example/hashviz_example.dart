@@ -3,7 +3,11 @@ import 'package:t3_hashviz/hashviz.dart';
 void main() {
   // Create an instance of Hashviz
   final hashviz =
-      Hashviz(hashToVisualize: 'example_to_hash', visualizationSize: 16);
+      Hashviz(
+        hashToVisualize: 'example_to_hash',
+        visualizationSize: 16,
+        isSymmetric: false,
+        numColors: 3);
 
   // Generate the image data
   final imageData = hashviz.visualizationBlocks;

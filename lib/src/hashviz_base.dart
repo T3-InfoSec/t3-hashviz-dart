@@ -6,6 +6,8 @@ import 'utils.dart';
 class Hashviz {
   String hashToVisualize;
   int visualizationSize;
+  final bool isSymmetric;
+  final int numColors;
   List<int> _randomSeed = [];
 
   /// Create a visualization hash class.
@@ -18,8 +20,11 @@ class Hashviz {
   Hashviz({
     required this.hashToVisualize,
     int visualizationSize = 10,
-  }) : visualizationSize =
-            isValidSize(visualizationSize) ? visualizationSize : 1;
+    this.isSymmetric = false,
+    int numColors = 3,
+  })  : visualizationSize = isPositive(visualizationSize) ? visualizationSize : 1,
+        numColors =
+            isPositive(numColors) ? _clampedNumColors(visualizationSize, numColors) : 3;
 
   /// A 2D-array of visualization blocks (image data).
   ///
@@ -29,7 +34,7 @@ class Hashviz {
   List<int> get visualizationBlocks {
     _randomSeed = _createRandomSeed(hashToVisualize);
 
-    return _createVisualizationBlocks(visualizationSize);
+    return _createVisualizationBlocks(visualizationSize, isSymmetric, numColors);
   }
 
   /// Creates image data.
@@ -38,30 +43,43 @@ class Hashviz {
   /// 2 means a block should be drawn, while 0 indicates the background.
   ///
   /// For now, only a square images are supported.
-  List<int> _createVisualizationBlocks(int visualizationSize) {
+
+  List<int> _createVisualizationBlocks(int visualizationSize, bool isSymmetric, int numColors) {
     final width = visualizationSize;
     final height = visualizationSize;
 
-    final dataWidth = (width / 2).ceil();
-    final mirrorWidth = width - dataWidth;
+    final effectiveNumColors = numColors.clamp(2, 9);
 
-    var blocks = <int>[];
+    var data = <int>[];
     for (var y = 0; y < height; y++) {
       var row = <int>[];
-      for (var x = 0; x < dataWidth; x++) {
-        // this makes foreground and background color to have a 43% (1/2.3)
-        // probability spot color has 13% chance
-        row.add((_generateRandomFloatFromSeed() * 2.3).floor());
-      }
-      final r = row.sublist(0, mirrorWidth).toList();
-      row.addAll(r.reversed.toList());
 
-      for (var i = 0; i < row.length; i++) {
-        blocks.add(row[i]);
+      final halfWidth = isSymmetric ? (width / 2).ceil() : width;
+
+      for (var x = 0; x < halfWidth; x++) {
+        // numColors controls the possible values.
+        // `rand()` generates a decimal value, we multiply it by `effectiveNumColors`.
+        // `floor()` round down to the nearest integer. This ensures that the final value is in the range 0 to numColors - 1.
+        // The value 0 will correspond to the background.
+        row.add(
+            (_generateRandomFloatFromSeed() * (effectiveNumColors)).floor());
       }
+
+      if (isSymmetric) {
+        final reflected = List<int>.from(row.reversed);
+        row.addAll(reflected);
+      }
+
+      data.addAll(row);
     }
 
-    return blocks;
+    return data;
+  }
+
+  /// Limits the number of colors based on the size of the blocks
+  static int _clampedNumColors(int size, int numColors) {
+    final maxColors = size * size;
+    return numColors > maxColors ? maxColors : numColors;
   }
 
   /// Create random seed from the [seed]
