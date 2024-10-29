@@ -44,7 +44,7 @@ void main() {
         if (!isSymmetrical) break;
       }
 
-      expect(isSymmetrical, isFalse, reason: 'Pattern should be asymmetrical');
+      expect(isSymmetrical, isFalse, reason: 'For sizes of 16 or more, safe from an infinitesimally unlikely fortuitous event, pattern should be asymmetrical.');
     });
   });
 }
